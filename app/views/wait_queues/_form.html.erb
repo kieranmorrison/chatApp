@@ -1,0 +1,27 @@
+<%= form_with(model: wait_queue, local: true) do |form| %>
+  <% if wait_queue.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(wait_queue.errors.count, "error") %> prohibited this wait_queue from being saved:</h2>
+
+      <ul>
+      <% wait_queue.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :dateTimeAdded %>
+    <%= form.datetime_select :dateTimeAdded %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

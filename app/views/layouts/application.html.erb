@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ChatApp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= action_cable_meta_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  
+  <% if signed_in? %>
+    <div>
+      Logged in as: <%= current_user.email %>
+      (<%= link_to "Sign out", sign_out_path, method: :delete %>)
+    </div>
+    <div>
+      <%= link_to 'Home', root_path %> |
+      <%= link_to 'Previous Chats', chats_path %>
+    </div>
+  <% else %>
+    <%= link_to "Sign in", sign_in_path %>
+  <% end %>
+  <body>
+    <%= yield %>
+  </body>
+</html>

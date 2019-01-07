@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+
+<% if current_user.isClient %>
+  <% if @waiting_chats.first %>
+    You are in a queue - please wait for a support agent
+    <%= link_to 'Leave', @waiting_chats.first, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% else %>
+    <%= link_to 'Request Help', new_chat_path %>
+  <% end %>
+<% elsif current_user.isSupport %>
+  <h1>Current Queue</h1>
+  <%= link_to 'Refresh...', pages_path %>
+  <% if @waiting_chats.count == 0 %>
+    <h3>No one in the queue</h3>
+  <% else %>
+    <table>
+      <tbody>
+        <% @waiting_chats.each do |waiting_chat| %>
+          <tr>
+            <td><%= waiting_chat.user.email %></td>
+            <td><%= waiting_chat.created_at %></td>
+            <td><%= link_to 'Help', join_chat_path(waiting_chat), :method => :put %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+<% end %>

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Previous Chats</h1>
+
+<% if @chats.count == 0 %>
+  <h3>No chats</h3>
+<% else %>
+  <table>
+    <tbody>
+      <% @chats.each do |chat| %>
+        <tr>
+          <td><i><%= chat.support_user.email %></i> helping <i><%= chat.user.email %></i></td>
+          <td><%= link_to 'Show', chat %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+<br>

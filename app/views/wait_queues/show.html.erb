@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @wait_queue.user %>
+</p>
+
+<p>
+  <strong>Datetimeadded:</strong>
+  <%= @wait_queue.dateTimeAdded %>
+</p>
+
+<%= link_to 'Edit', edit_wait_queue_path(@wait_queue) %> |
+<%= link_to 'Back', wait_queues_path %>
